@@ -32,9 +32,17 @@ public class Player {
 	private final Government currentGovernment;
 	private final Government targetGovernment;
 	private final int anarchyTurns;
-	
+	private final int population;
+
 	public Player(int number, String name, boolean male, int turns, String nationName, int flag_w, int flag_h, 
-			int lastBulbs, int advanceId, int curBulbs, int totalBulbs, int governmentId, int targetGovernmentId, int anarchyTurns) {
+			int lastBulbs, 
+			int advanceId, 
+			int curBulbs, 
+			int totalBulbs, 
+			int governmentId, 
+			int targetGovernmentId, 
+			int anarchyTurns,
+			int population) {
 		this.number = number;
 		this.name = name;
 		this.male = male;
@@ -51,6 +59,11 @@ public class Player {
 		this.currentGovernment = Civ.getGovernmentById(governmentId);
 		this.targetGovernment = Civ.getGovernmentById(targetGovernmentId);;
 		this.anarchyTurns = anarchyTurns;
+		this.population = population;
+	}
+	
+	public int getPopulation() {
+		return population;
 	}
 
 	public int getNumber() {

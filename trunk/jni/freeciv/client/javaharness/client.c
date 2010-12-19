@@ -224,7 +224,8 @@ JNIEXPORT void JNICALL Java_net_hackcasual_freeciv_NativeHarness_loadTileset
 
 int width, height;
 
-
+
+
 jmethodID draw_frame = 0;
 jmethodID client_connect = 0;
 jmethodID update_tileset_progress = 0;
@@ -389,7 +390,8 @@ JNIEXPORT void JNICALL Java_net_hackcasual_freeciv_NativeHarness_init
     LOGI("Setting display size: %dx%d", android_width, android_height);
     map_canvas_resized(w, h);
     civ_unlock();
-}
+}
+
 // Updates displayCanvas, which is backed by bufferData, after a data operation
 JNIEXPORT void JNICALL Java_net_hackcasual_freeciv_NativeHarness_reloadMap
   (JNIEnv *je, jobject o) {
@@ -1134,7 +1136,7 @@ JNIEXPORT jobject JNICALL Java_net_hackcasual_freeciv_NativeHarness_getPlayerInf
 	}
 
 	cid = (*env)->GetMethodID(env, cls,
-	                               "<init>", "(ILjava/lang/String;ZILjava/lang/String;IIIIIIIII)V");
+	                               "<init>", "(ILjava/lang/String;ZILjava/lang/String;IIIIIIIIII)V");
 
 	if (!cid) {
 		LOGE("Couldn't find the player constructor");
@@ -1160,8 +1162,12 @@ JNIEXPORT jobject JNICALL Java_net_hackcasual_freeciv_NativeHarness_getPlayerInf
 	jstring nation_name = ((*env)->NewStringUTF(env, pplayer->nation->adjective.vernacular));
 
 
+        LOGI("Here in getPlayerInfo");
+        LOGI("Player population: %d", civ_population(pplayer));
 
-	jobject playa = (*env)->NewObject(env, cls, cid,
+
+	jobject playa = (*env)->NewObject(env, cls,
+                        cid,
 			player_number(pplayer),
 			name,
 			pplayer->is_male,
@@ -1175,7 +1181,8 @@ JNIEXPORT jobject JNICALL Java_net_hackcasual_freeciv_NativeHarness_getPlayerInf
 			total_bulbs_required(pplayer),
 			pplayer->government?pplayer->government->item_number:-1,
 			pplayer->target_government?pplayer->target_government->item_number:-1,
-			pplayer->revolution_finishes - game.info.turn
+			pplayer->revolution_finishes - game.info.turn,
+            civ_population(pplayer)
 		);
 
 	civ_unlock();

@@ -338,14 +338,14 @@ public class NativeHarness {
 		Log.i("FreeCiv", String.format("Got a tileset chunk: %s", chunk));
 		lastTilesetProgress = chunk;
 		if (this.nativeListener != null) {
-			this.nativeListener.recieveTilesetUpdate(chunk);
+			this.nativeListener.receiveTilesetUpdate(chunk);
 		}
 	}
 	
 	public void hookNativeEventListener(NativeEventListener nel) {
 		nativeListener = nel;
 		if (lastTilesetProgress != null)
-			nativeListener.recieveTilesetUpdate(lastTilesetProgress);
+			nativeListener.receiveTilesetUpdate(lastTilesetProgress);
 		nativeListener.setConnectionStatus(lastConnectionStatus);
 	}
 	
