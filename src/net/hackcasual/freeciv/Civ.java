@@ -190,9 +190,9 @@ public class Civ extends Application implements NativeEventListener {
 	}
 
 	@Override
-	public void recieveTilesetUpdate(String info) {
+	public void receiveTilesetUpdate(String info) {
 		if (this.nativeListener != null)
-			this.nativeListener.recieveTilesetUpdate(info);
+			this.nativeListener.receiveTilesetUpdate(info);
 		this.lastTilesetProgress = info;
 	}
 
@@ -224,14 +224,14 @@ public class Civ extends Application implements NativeEventListener {
 		Log.i("FreeCiv", String.format("Got a tileset chunk: %s", chunk));
 		lastTilesetProgress = chunk;
 		if (this.nativeListener != null) {
-			this.nativeListener.recieveTilesetUpdate(chunk);
+			this.nativeListener.receiveTilesetUpdate(chunk);
 		}
 	}
 	
 	public void hookNativeEventListener(NativeEventListener nel) {
 		this.nativeListener = nel;
 		if (lastTilesetProgress != null)
-			nativeListener.recieveTilesetUpdate(lastTilesetProgress);
+			nativeListener.receiveTilesetUpdate(lastTilesetProgress);
 		nativeListener.setConnectionStatus(lastConnectionStatus );
 	}
 

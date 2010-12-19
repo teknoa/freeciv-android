@@ -13,14 +13,11 @@
 
 package net.hackcasual.freeciv.views;
 
-import net.hackcasual.freeciv.CityPresentUnitAdapter;
 import net.hackcasual.freeciv.Civ;
 import net.hackcasual.freeciv.GovernmentAdapter;
 import net.hackcasual.freeciv.NativeHarness;
 
 import net.hackcasual.freeciv.R;
-import net.hackcasual.freeciv.R.id;
-import net.hackcasual.freeciv.R.layout;
 import net.hackcasual.freeciv.models.Player;
 
 import android.app.Activity;
@@ -49,12 +46,15 @@ public class PlayerView extends Activity {
 		super.onResume();
         nh = ((Civ)this.getApplication()).getNativeHarness();
         
+        Log.i("a", "Getting player info");
+        
         Player player = NativeHarness.getPlayerInfo();
         int lastBulbs = player.getLastBulbs();
         if (lastBulbs == 0) lastBulbs = 1;
         ((TextView)this.findViewById(R.id.player_name)).setText(player.getName());
         ((TextView)this.findViewById(R.id.nation_name)).setText(player.getNationName());       
         ((ImageView)this.findViewById(R.id.player_flag)).setImageBitmap(player.getFlag());
+        ((TextView)this.findViewById(R.id.population)).setText(String.valueOf(player.getPopulation()));
         ((TextView)this.findViewById(R.id.turn_count)).setText(String.valueOf(player.getTurns()));
         ((TextView)this.findViewById(R.id.last_bulbs)).setText(String.valueOf(player.getLastBulbs()));
         ((TextView)this.findViewById(R.id.government_type_name)).setText(player.getCurrentGovernment().getName() + 

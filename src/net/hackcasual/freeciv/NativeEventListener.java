@@ -14,6 +14,6 @@
 package net.hackcasual.freeciv;
 
 public interface NativeEventListener {
-	public void recieveTilesetUpdate(String info);
+	public void receiveTilesetUpdate(String info);
 	public void setConnectionStatus(boolean isConnected);
 }

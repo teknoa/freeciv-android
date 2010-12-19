@@ -410,7 +410,7 @@ public class FreeCiv extends NativeAwareActivity {
 	}
 
 	@Override
-	public void recieveTilesetUpdate(String info) {
+	public void receiveTilesetUpdate(String info) {
 		// TODO Auto-generated method stub
 		
 	}
