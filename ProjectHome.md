@@ -1,0 +1,1 @@
+This project is a port of FreeCiv to the Android platform. FreeCiv itself is an open-source clone of the turn-based strategy classic Civilization II.
